@@ -185,5 +185,5 @@ services:
     build:
       dockerfile: ./sensor/Dockerfile
     volumes:
-      - ./backend:/app
+      - ./sensor:/app
     network_mode: bridge
