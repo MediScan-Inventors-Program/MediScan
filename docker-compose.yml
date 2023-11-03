@@ -177,3 +177,13 @@ services:
       interval: 10s
       timeout: 10s
       retries: 120
+
+  sensor:
+    depends_on:
+      es01:
+        condition: service_healthy
+    build:
+      dockerfile: ./sensor/Dockerfile
+    volumes:
+      - ./backend:/app
+    network_mode: bridge
