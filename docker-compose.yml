@@ -184,6 +184,8 @@ services:
         condition: service_healthy
     build:
       dockerfile: ./sensor/Dockerfile
+    env_file:
+      - sensor.env
     volumes:
       - ./sensor:/app
-    network_mode: bridge
+    network_mode: host
