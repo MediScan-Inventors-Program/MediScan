@@ -7,7 +7,7 @@
 ## Development
 
 ```bash
-$ echo "NET_CAPTURE_INTERFACE=[NETWORK INTERFACE NAME HERE]" > sesnor.env
+$ echo "NET_CAPTURE_INTERFACE=[NETWORK INTERFACE NAME HERE]" > sensor.env
 $ docker compose up
 # User: elastic
 # Password: mediscan

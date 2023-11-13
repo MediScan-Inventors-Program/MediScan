@@ -1,7 +1,7 @@
 import { json } from '@sveltejs/kit'
 import { client } from '$lib/server/elastic'
 
-export async function POST({ _request, _cookies }) {
+export async function POST() {
     const now = new Date(Date.now());
     await client.index({
         index: 'mediscan_events',
