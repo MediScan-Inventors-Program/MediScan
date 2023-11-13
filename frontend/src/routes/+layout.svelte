@@ -13,7 +13,7 @@
     <meta property="og:image" content="https://ibb.co/qFZMgxT"/>
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Nate Lu" />
+    <meta property="og:site_name" content="MediScan" />
 </svelte:head>
 
 <div class="flex flex-col min-h-screen bg-background">
