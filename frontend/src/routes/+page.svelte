@@ -1,4 +1,7 @@
 <h1>Hello world!</h1>
+<h1 class="font-poppins">Hello world!</h1>
+<h1 class="font-inter">Hello world!</h1>
+
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 <div>
     <button on:click={storeDocument}>Send doc to elasticsearch</button>

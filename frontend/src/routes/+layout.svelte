@@ -1,5 +1,6 @@
 <script lang="ts">
     import "../app.css";
+    import Navbar from "$lib/components/Navbar.svelte";
 </script>
 
 <svelte:head>
@@ -15,4 +16,9 @@
     <meta property="og:site_name" content="Nate Lu" />
 </svelte:head>
 
-<slot />
+<div class="flex flex-col min-h-screen bg-background">
+    <Navbar/>
+    <main class="flex-grow">
+        <slot/>
+    </main>
+</div>
