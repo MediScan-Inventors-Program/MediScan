@@ -12,7 +12,7 @@
     async function storeDocument() {
         await fetch('/api/storeDocument', {
             method: 'POST',
-            body: JSON.stringify({"do": "thing"}),
+            body: JSON.stringify({"do": "things"}),
             headers: {
                 'Content-Type': 'application/json'
             }
