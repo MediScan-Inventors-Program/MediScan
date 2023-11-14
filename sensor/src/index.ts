@@ -1,10 +1,11 @@
 import pcap from "pcap";
+import getFilters from "./filters";
 
 function main(): void {
     const pcapInterface = process.env.NET_CAPTURE_INTERFACE;
 
     if (!pcapInterface) {
-        console.log("No capture interface specified.")
+        console.error("No capture interface specified.")
         return;
     }
 
@@ -13,7 +14,13 @@ function main(): void {
     pcapSession.on('packet', (rawPacket) => {
         const packet = pcap.decode.packet(rawPacket);
 
-        console.log(JSON.stringify(packet));
+        for (const filter of getFilters()) {
+            const filterResults = filter(packet);
+            if (filterResults) {
+                // TODO: hook up to elastic
+                console.log("HIT");
+            }
+        }
     })
 }
 
