@@ -19,7 +19,7 @@
 
 <div class="flex flex-col min-h-screen bg-background">
     <Navbar/>
-    <main class="flex-grow px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36 pt-2">
+    <main class="flex-grow px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36 pt-8">
         <slot/>
     </main>
 </div>
