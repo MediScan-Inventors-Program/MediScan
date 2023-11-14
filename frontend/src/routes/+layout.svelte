@@ -1,5 +1,7 @@
 <script lang="ts">
     import "../app.css";
+    import Icon from '@iconify/svelte';
+
     import Navbar from "$lib/components/Navbar.svelte";
 </script>
 
