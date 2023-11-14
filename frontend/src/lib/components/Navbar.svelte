@@ -7,7 +7,7 @@
     <div class="container flex justify-between items-center mx-auto flex-nowrap">
         <div class="flex flex-start">
             <a href="/" class="flex mr-2 py-3">
-                <img src="/imgs/logo.png" alt="MediScan Logo" class="h-12">
+                <img src="/imgs/logo.png" alt="MediScan Logo" class="h-12 shadow-2xl">
                 <span class="self-center text-2xl font-medium whitespace-nowrap px-6 text-white tracking-wide hidden sm:flex">MediScan</span>
             </a>
 
@@ -45,7 +45,7 @@
             <Icon icon="solar:bell-line-duotone" color="white" width="28px" class="h-min cursor-pointer mr-2"/>
             <div class="flex justify-between items-center gap-x-3">
                 <div class="flex flex-col self-start items-end gap-y-1 h-full">
-                    <h3 class="text-white text-base font-medium">Nathan Lu</h3>
+                    <h3 class="text-white text-base font-medium whitespace-nowrap">Nathan Lu</h3>
                     <sub class="text-secondary-200 font-light">Admin</sub>
                 </div>
                 <div class="rounded-md self-start bg-primary-600 text-white text-xl font-medium w-10 h-10 flex justify-center items-center cursor-pointer">
@@ -62,7 +62,7 @@
     }
 
     div.active-nav {
-        background: url($lib/images/navbar/Bg.svg) 100% 100%;
+        background: url($lib/images/navbar/nav-background.svg) 100% 100%;
     }
 
     a.active-nav {
