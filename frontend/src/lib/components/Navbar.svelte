@@ -4,37 +4,37 @@
 </script>
 
 <nav class="bg-primary px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36">
-    <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <div class="flex flex-start gap-x-3">
+    <div class="container flex justify-between items-center mx-auto flex-nowrap">
+        <div class="flex flex-start">
             <a href="/" class="flex mr-2 py-3">
                 <img src="/imgs/logo.png" alt="MediScan Logo" class="h-12">
                 <span class="self-center text-2xl font-medium whitespace-nowrap px-6 text-white tracking-wide hidden sm:flex">MediScan</span>
             </a>
 
             <div class:active-nav={$page.url.pathname === '/dashboard'}
-                 class="nav-link flex items-center justify-center mt-3 px-5">
-                <a class:active-nav={$page.url.pathname === '/dashboard'} href="/dashboard" class="text-center text-white font-medium">
+                 class="nav-link flex items-center justify-center mt-3 px-9">
+                <a class:active-nav={$page.url.pathname === '/dashboard'} href="/dashboard" class="text-center text-white">
                     Dashboard
                 </a>
             </div>
 
             <div class:active-nav={$page.url.pathname === '/devices'}
-                 class="nav-link flex items-center justify-center mt-3 px-5">
-                <a class:active-nav={$page.url.pathname === '/devices'} href="/devices" class="text-center text-white font-medium">
+                 class="nav-link flex items-center justify-center mt-3 px-9">
+                <a class:active-nav={$page.url.pathname === '/devices'} href="/devices" class="text-center text-white">
                     Devices
                 </a>
             </div>
 
             <div class:active-nav={$page.url.pathname === '/alerts'}
-                 class="nav-link flex items-center justify-center mt-3 px-5">
-                <a class:active-nav={$page.url.pathname === '/alerts'} href="/alerts" class="text-center text-white font-medium ">
+                 class="nav-link flex items-center justify-center mt-3 px-9">
+                <a class:active-nav={$page.url.pathname === '/alerts'} href="/alerts" class="text-center text-white">
                     Alerts
                 </a>
             </div>
 
             <div class:active-nav={$page.url.pathname === '/risk'}
-                 class="nav-link flex items-center justify-center mt-3 px-5">
-                <a class:active-nav={$page.url.pathname === '/risk'} href="/risk" class="text-center text-white font-medium">
+                 class="nav-link flex items-center justify-center mt-3 px-9">
+                <a class:active-nav={$page.url.pathname === '/risk'} href="/risk" class="text-center text-white">
                     Risk
                 </a>
             </div>
@@ -57,9 +57,12 @@
 </nav>
 
 <style>
+    .nav-link {
+        background-size: 100% 100%;
+    }
+
     div.active-nav {
-        background: theme('colors.background');
-        border-radius: 12px 12px 0 0;
+        background: url($lib/images/navbar/Bg.svg) 100% 100%;
     }
 
     a.active-nav {
