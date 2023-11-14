@@ -1,14 +1,25 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
+    import { page } from '$app/stores';
+
+
 </script>
 
 <nav class="bg-primary px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36 py-3">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <div class="">
+        <div class="flex flex-start">
             <a href="/" class="flex">
                 <img src="/imgs/logo.png" alt="MediScan Logo" class="h-12">
                 <span class="self-center text-2xl font-medium whitespace-nowrap px-6 text-white tracking-wide hidden sm:flex">MediScan</span>
             </a>
+            <div>
+                <div class:active={$page.url.pathname === '/dashboard'} class="nav-link">
+                    <a href="/dashboard">
+                        Dashboard
+                    </a>
+                </div>
+            </div>
+
         </div>
         <div class="flex justify-end gap-x-3 items-center">
             <Icon icon="solar:settings-line-duotone" color="white" width="28px" class="h-min cursor-pointer"/>
@@ -25,3 +36,9 @@
         </div>
     </div>
 </nav>
+
+<style>
+    .active {
+        border-bottom: 2px solid white;
+    }
+</style>
