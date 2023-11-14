@@ -1,6 +1,5 @@
 <script lang="ts">
     import "../app.css";
-    import Icon from '@iconify/svelte';
 
     import Navbar from "$lib/components/Navbar.svelte";
 </script>
@@ -13,14 +12,14 @@
     <meta property="og:title" content="MediScan"/>
     <meta property="og:description" content="MediScan - Building trust through medical transparency"/>
     <meta property="og:image" content="https://ibb.co/qFZMgxT"/>
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="MediScan" />
+    <meta property="og:locale" content="en_US"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="MediScan"/>
 </svelte:head>
 
 <div class="flex flex-col min-h-screen bg-background">
     <Navbar/>
-    <main class="flex-grow">
+    <main class="flex-grow px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36 pt-2">
         <slot/>
     </main>
 </div>
