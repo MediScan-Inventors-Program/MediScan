@@ -1,5 +1,7 @@
 <script lang="ts">
     import MiniPanel from "$lib/components/MiniPanel.svelte";
+    import DevicesTable from "$lib/components/DevicesTable.svelte";
+    import RiskScore from "$lib/components/RiskScore.svelte";
 
     // async function storeDocument() {
     //     await fetch('/api/storeDocument', {
@@ -42,16 +44,26 @@
                 percentage={3}>
         </MiniPanel>
         <MiniPanel
-                icon="material-symbols:check"
-                panelName="Compliance"
-                panelValue="65"
-                percentage={6}>
+                icon="mingcute:game-2-line"
+                panelName="Non-Medical Devices"
+                panelValue="2"
+                percentage={1}>
         </MiniPanel>
         <MiniPanel
                 icon="fluent:question-24-filled"
                 panelName="Unknown Devices"
-                panelValue="8"
+                panelValue="5"
                 percentage={-8}>
         </MiniPanel>
+    </div>
+    <div class="grid grid-cols-12 gap-8 mt-12">
+        <div class="col-span-3">
+            <h2 class="text-2xl font-medium">Risk Score</h2>
+            <RiskScore></RiskScore>
+        </div>
+        <div class="col-span-9">
+            <h2 class="text-2xl font-medium">Devices</h2>
+            <DevicesTable></DevicesTable>
+        </div>
     </div>
 </div>
