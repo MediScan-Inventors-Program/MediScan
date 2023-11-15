@@ -12,9 +12,6 @@
     // }
 </script>
 
-
-
-<!--<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>-->
 <!--<div>-->
 <!--    <button on:click={storeDocument}>Send doc to elasticsearch</button>-->
 

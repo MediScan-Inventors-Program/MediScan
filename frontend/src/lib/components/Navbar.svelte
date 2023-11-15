@@ -4,7 +4,7 @@
 </script>
 
 <nav class="bg-primary px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36">
-    <div class="container flex justify-between items-center mx-auto flex-nowrap">
+    <div class="flex justify-between items-center flex-nowrap">
         <div class="flex flex-start">
             <a href="/" class="flex mr-2 py-3">
                 <img src="/imgs/logo.png" alt="MediScan Logo" class="h-12 shadow-2xl">
