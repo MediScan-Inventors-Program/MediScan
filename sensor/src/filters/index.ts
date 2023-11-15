@@ -10,7 +10,7 @@ export default function getFilters(): ((packet: any) => FilterResults | void)[] 
 
 export function isUDP(packet: any): boolean {
     return packet?.payload?.payload?.protocol == 17
-           && packet?.payload?.payload?.payload?.data?.type == "Buffer";
+           && packet?.payload?.payload?.payload?.data instanceof Buffer;
 }
 
 export function getUDP(packet: any): any {
@@ -27,7 +27,7 @@ export function compareAddr(addr1: { addr: number[]}, addr2: { addr: number[]}) 
     if (a.length !== b.length) return false;
 
     for (var i = 0; i < a.length; ++i) {
-        if (a[i] !== b[i]) return false;
+        if (a[i] !== b[i] && a[i] !== -1 && b[i] !== -1) return false;
     }
     return true;
 }
@@ -36,4 +36,21 @@ export function addr(addr: number[]): { addr: number[] } {
     return { addr };
 }
 
-export const BroadcastAddr = { addr: [255,255,255,255] }
+export const BroadcastAddr = { addr: [-1,-1,-1,255] }
+
+// convert mac from buffer into string
+export function toMacStr(bytes: number[]): string {
+    let mac = [];
+
+    for (const byte of bytes) {
+        let hex = byte.toString(16);
+
+        if (hex.length === 1) {
+            hex = '0' + hex;
+        }
+
+        mac.push(hex);
+    }
+
+    return mac.join(':');
+}
