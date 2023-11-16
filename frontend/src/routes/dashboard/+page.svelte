@@ -67,7 +67,7 @@
     <div class="grid grid-cols-12 gap-8 mt-12">
         <div class="col-span-full xl:col-span-3">
             <h2 class="text-2xl font-medium">Risk Score</h2>
-            <RiskScore></RiskScore>
+            <RiskScore devices={devices}></RiskScore>
         </div>
         <div class="col-span-full xl:col-span-9">
             <div class="flex justify-between items-center">
