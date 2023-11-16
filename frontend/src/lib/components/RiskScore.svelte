@@ -2,6 +2,7 @@
     import Icon from "@iconify/svelte";
 
     export let riskScore: number = 93;
+    let showPercentage: boolean = false;
 
     const getLetterGrade = (score: number): string => {
         if (score >= 90) {
@@ -37,10 +38,20 @@
 
 <div class="rounded-lg border-2 border-secondary p-5 bg-white mt-2">
     <div class="flex flex-col justify-between h-full items-center">
-        <div class="gauge w-4/5 mt-6 mb-12 relative" style="background: linear-gradient({scale(riskScore)}deg, transparent 50%, #fff 0) top/100% 200%, radial-gradient(farthest-side at bottom, #fff calc(100% - 25px), transparent 0), linear-gradient(to right, #883ECD, #FF00FA80);">
-            <div class="mt-5 text-5xl lg:text-3xl text-text font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                {riskScore}%
-            </div>
+        <div class="flex justify-end items-center w-full">
+            <button class="tooltip" data-tip="Embed this widget" on:click={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')}>
+                <Icon icon="icomoon-free:embed" class="h-min cursor-pointer mr-2 text-secondary-600 w-6"></Icon>
+            </button>
+        </div>
+        <div class="gauge w-4/5 mt-2 mb-8 relative" style="background: linear-gradient({scale(riskScore)}deg, transparent 50%, #fff 0) top/100% 200%, radial-gradient(farthest-side at bottom, #fff calc(100% - 25px), transparent 0), linear-gradient(to right, #883ECD, #FF00FA80);">
+            <button class="mt-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 tooltip" data-tip="Toggle percentage" on:click={() => showPercentage = !showPercentage}>
+                <span class="text-2xl lg:text-3xl text-text font-bold text-center block w-full">
+                    {showPercentage ? riskScore + '%' : getLetterGrade(riskScore)}
+                </span>
+                <sub class="text-secondary-400 font-light text-center mt-0">
+                    {showPercentage ? 'Risk Score' : 'Risk Grade'}
+                </sub>
+            </button>
         </div>
         <div class="flex justify-center">
             <a href="/risk">
@@ -64,4 +75,7 @@
         padding-top: 50%;
     }
 
+    span {
+        line-height: 1 !important;
+    }
 </style>
