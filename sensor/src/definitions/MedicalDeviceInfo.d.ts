@@ -4,9 +4,7 @@ interface MedicalDeviceInfo {
     scanStatus: ScanStatus,
     certainty: MedicalDeviceCertainty,
     riskScore: number,
-    metadata: {
-        name?: string,
-        manufacturer?: string,
-        UDI?: string
-    }
+    metadataName?: string,
+    metadataManufacturer?: string,
+    metadataUDI?: string
 }

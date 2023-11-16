@@ -25,10 +25,8 @@ export function filter(packet: any): FilterResults | void {
                 mac: toMacStr(packet.payload.shost.addr),
                 scanStatus: "ToQueue",
                 riskScore: 0,
-                metadata: {
-                    name: "Unknown Carescape Device",
-                    manufacturer: "GE"
-                }
+                metadataName: "Unknown Carescape Device",
+                metadataManufacturer: "GE"
             }
         }
     }
