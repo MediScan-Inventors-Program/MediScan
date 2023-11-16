@@ -1,24 +1,8 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
-    import type {Device} from "$lib/models/Device";
-    import {onMount} from "svelte";
+    export let riskScore: number = 0;
 
-    export let devices: Device[] = [];
-
-    let riskScore: number = 0;
     let showPercentage: boolean = false;
-
-    onMount(() => {
-        let totalScore: number = 0;
-        let totalDevices: number = 0;
-        devices.forEach(device => {
-            if (device.riskScore) {
-                totalScore += device.riskScore;
-                totalDevices++;
-            }
-        });
-        riskScore = totalScore / totalDevices;
-    });
 
     const getLetterGrade = (score: number): string => {
         if (score >= 90) {

@@ -11,9 +11,9 @@
 
     export let data: PageData;
     let devices: Device[] = [];
+    let riskScoreTemp: number = 0;
 
     onMount(async () => {
-        // console.log(data);
         for (let device of data.devices.hits.hits) {
             devices.push({
                 id: device._id,
@@ -26,7 +26,11 @@
                 lastSeen: device?._source?.lastSeen
             });
         }
-        // console.log(devices);
+
+        for (let device of devices) {
+            riskScoreTemp += device.riskScore;
+        }
+        riskScoreTemp = riskScoreTemp / devices.length;
     });
 </script>
 
@@ -67,7 +71,7 @@
     <div class="grid grid-cols-12 gap-8 mt-12">
         <div class="col-span-full xl:col-span-3">
             <h2 class="text-2xl font-medium">Risk Score</h2>
-            <RiskScore devices={devices}></RiskScore>
+            <RiskScore riskScore={riskScoreTemp}></RiskScore>
         </div>
         <div class="col-span-full xl:col-span-9">
             <div class="flex justify-between items-center">

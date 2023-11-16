@@ -44,7 +44,6 @@
                 <td class="text-sm text-secondary-800 font-light px-6 py-3 whitespace-nowrap tooltip underline underline-offset-1 cursor-pointer mt-3" data-tip="Copy" on:click={() => navigator.clipboard.writeText(device.ip)}>
                     {device.ip}
                 </td>
-
                 <td class="text-sm text-secondary-800 font-light px-6 py-3 whitespace-nowrap">
                     {device.lastSeen}
                 </td>
@@ -53,9 +52,3 @@
         </tbody>
     </table>
 </div>
-
-
-<style>
-
-
-</style>
