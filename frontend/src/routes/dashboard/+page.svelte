@@ -1,10 +1,33 @@
 <script lang="ts">
+    import type {PageData} from './$types';
+    import {onMount} from "svelte";
+
     import MiniPanel from "$lib/components/MiniPanel.svelte";
     import DevicesTable from "$lib/components/DevicesTable.svelte";
     import RiskScore from "$lib/components/RiskScore.svelte";
 
-</script>
+    import type {Device} from "$lib/models/Device";
 
+    export let data: PageData;
+    let devices: Device[] = [];
+
+    onMount(async () => {
+        console.log(data)
+        for (let device of data.devices.hits.hits) {
+            devices.push({
+                id: device._id,
+                name: device?._source?.metadataName,
+                manufacturer: device?._source?.metadataManufacturer,
+                riskScore: device?._source?.riskScore,
+                mac: device?._source?.mac,
+                ip: device?._source?.ip,
+                deviceType: device?._source?.certainty,
+                lastSeen: device?._source?.lastSeen
+            });
+        }
+        console.log(devices);
+    });
+</script>
 
 <div class="pt-10">
     <h1 class="text-3xl font-semibold">Dashboard</h1>
@@ -41,13 +64,13 @@
         </MiniPanel>
     </div>
     <div class="grid grid-cols-12 gap-8 mt-12">
-        <div class="col-span-full lg:col-span-3">
+        <div class="col-span-full xl:col-span-3">
             <h2 class="text-2xl font-medium">Risk Score</h2>
             <RiskScore></RiskScore>
         </div>
-        <div class="col-span-full lg:col-span-9">
+        <div class="col-span-full xl:col-span-9">
             <h2 class="text-2xl font-medium">Devices</h2>
-            <DevicesTable></DevicesTable>
+            <DevicesTable devices={devices}></DevicesTable>
         </div>
     </div>
 </div>

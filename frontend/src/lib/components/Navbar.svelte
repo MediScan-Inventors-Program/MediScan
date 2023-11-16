@@ -1,6 +1,29 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
     import {page} from '$app/stores';
+
+    const clearAll = async () => {
+        await fetch('/api/clear', {
+            method: 'DELETE',
+        }).then(() => {
+            setTimeout(() => {
+                window.location.reload();
+            }, 300);
+        });
+    }
+
+    const populateInfo = async () => {
+        await fetch('/api/populate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }).then(() => {
+            setTimeout(() => {
+                window.location.reload();
+            }, 300);
+        });
+    }
 </script>
 
 <nav class="bg-primary px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36">
@@ -13,7 +36,8 @@
 
             <div class:active-nav={$page.url.pathname === '/dashboard'}
                  class="nav-link flex items-center justify-center mt-3 px-9">
-                <a class:active-nav={$page.url.pathname === '/dashboard'} href="/dashboard" class="text-center text-white">
+                <a class:active-nav={$page.url.pathname === '/dashboard'} href="/dashboard"
+                   class="text-center text-white">
                     Dashboard
                 </a>
             </div>
@@ -41,8 +65,13 @@
 
         </div>
         <div class="flex justify-end gap-x-3 items-center py-3">
-            <Icon icon="solar:settings-line-duotone" color="white" width="28px" class="h-min cursor-pointer"/>
-            <Icon icon="solar:bell-line-duotone" color="white" width="28px" class="h-min cursor-pointer mr-2"/>
+            <button class="tooltip tooltip-bottom" data-tip="dev warning: will clear all events and devices"
+                    on:click={clearAll}>
+                <Icon icon="solar:settings-line-duotone" color="white" width="28px" class="h-min cursor-pointer"/>
+            </button>
+            <button class="tooltip tooltip-bottom" data-tip="dev info: will populate mock data" on:click={populateInfo}>
+                <Icon icon="solar:bell-line-duotone" color="white" width="28px" class="h-min cursor-pointer mr-2"/>
+            </button>
             <div class="flex justify-between items-center gap-x-3">
                 <div class="flex flex-col self-start items-end gap-y-1 h-full">
                     <h3 class="text-white text-base font-medium whitespace-nowrap">Nathan Lu</h3>
