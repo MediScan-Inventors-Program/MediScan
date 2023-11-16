@@ -7,6 +7,7 @@
     import RiskScore from "$lib/components/RiskScore.svelte";
 
     import type {Device} from "$lib/models/Device";
+    import Icon from "@iconify/svelte";
 
     export let data: PageData;
     let devices: Device[] = [];
@@ -69,7 +70,17 @@
             <RiskScore></RiskScore>
         </div>
         <div class="col-span-full xl:col-span-9">
-            <h2 class="text-2xl font-medium">Devices</h2>
+            <div class="flex justify-between items-center">
+                <h2 class="text-2xl font-medium">Devices</h2>
+
+                <a href="/devices">
+                    <button class="flex items-center justify-between bg-primary-100 hover:bg-primary-200 duration-300 border-primary-900 border-2 text-white rounded-lg px-4 py-2">
+                        <Icon icon="fluent:open-16-filled" class="w-6 text-primary-900"></Icon>
+                        <span class="text-primary-900 text-sm font-medium">See All Devices</span>
+                    </button>
+                </a>
+
+            </div>
             <DevicesTable devices={devices}></DevicesTable>
         </div>
     </div>

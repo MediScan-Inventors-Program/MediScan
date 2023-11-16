@@ -36,7 +36,7 @@
 
 </script>
 
-<div class="rounded-lg border-2 border-secondary p-5 bg-white mt-2">
+<div class="rounded-lg border-2 border-secondary p-5 bg-white mt-3">
     <div class="flex flex-col justify-between h-full items-center">
         <div class="flex justify-end items-center w-full">
             <button class="tooltip" data-tip="Embed this widget" on:click={() => window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')}>
