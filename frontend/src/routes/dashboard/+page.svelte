@@ -13,7 +13,7 @@
     let devices: Device[] = [];
 
     onMount(async () => {
-        console.log(data)
+        // console.log(data);
         for (let device of data.devices.hits.hits) {
             devices.push({
                 id: device._id,
@@ -26,7 +26,7 @@
                 lastSeen: device?._source?.lastSeen
             });
         }
-        console.log(devices);
+        // console.log(devices);
     });
 </script>
 
