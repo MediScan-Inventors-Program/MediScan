@@ -1,7 +1,7 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
+    export let riskScore: number = 0;
 
-    export let riskScore: number = 93;
     let showPercentage: boolean = false;
 
     const getLetterGrade = (score: number): string => {
