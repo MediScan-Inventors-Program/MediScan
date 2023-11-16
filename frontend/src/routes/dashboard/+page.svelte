@@ -41,11 +41,11 @@
         </MiniPanel>
     </div>
     <div class="grid grid-cols-12 gap-8 mt-12">
-        <div class="col-span-3">
+        <div class="col-span-full lg:col-span-3">
             <h2 class="text-2xl font-medium">Risk Score</h2>
             <RiskScore></RiskScore>
         </div>
-        <div class="col-span-9">
+        <div class="col-span-full lg:col-span-9">
             <h2 class="text-2xl font-medium">Devices</h2>
             <DevicesTable></DevicesTable>
         </div>

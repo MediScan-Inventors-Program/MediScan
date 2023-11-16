@@ -13,7 +13,7 @@
     </div>
     <h3 class="text-2xl font-bold mt-5 text-text">{panelValue}</h3>
     <div class="flex justify-between align-middle">
-        <p class="text-secondary-500 whitespace-nowrap">{panelName}</p>
+        <p class="text-secondary-500">{panelName}</p>
         <p class="{percentage>0 ? 'text-success' : 'text-danger'} whitespace-nowrap">
             {percentage > 0 ? '+' : ''}{percentage} {percentage > 0 ? '↑' : '↓'}
         </p>

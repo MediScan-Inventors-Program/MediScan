@@ -1,8 +1,7 @@
 <script lang="ts">
     import Icon from "@iconify/svelte";
 
-    export let riskScore: number = 50;
-    export let riskPercentageUpdate: number = 0;
+    export let riskScore: number = 93;
 
     const getLetterGrade = (score: number): string => {
         if (score >= 90) {
@@ -38,8 +37,11 @@
 
 <div class="rounded-lg border-2 border-secondary p-5 bg-white mt-2">
     <div class="flex flex-col justify-between h-full items-center">
-        <div class="gauge w-4/5 mt-6 mb-12"></div>
-
+        <div class="gauge w-4/5 mt-6 mb-12 relative" style="background: linear-gradient({scale(riskScore)}deg, transparent 50%, #fff 0) top/100% 200%, radial-gradient(farthest-side at bottom, #fff calc(100% - 25px), transparent 0), linear-gradient(to right, #883ECD, #FF00FA80);">
+            <div class="mt-5 text-5xl lg:text-3xl text-text font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                {riskScore}%
+            </div>
+        </div>
         <div class="flex justify-center">
             <a href="/risk">
                 <button class="flex items-center justify-between bg-primary-100 hover:bg-primary-200 duration-300 border-primary-900 border-2 text-white rounded-lg px-4 py-2">
@@ -53,9 +55,7 @@
 
 <style>
     .gauge {
-        border-radius: 10rem 10rem 0 0;
-        background: linear-gradient(160deg, transparent 50%, #fff 0) top/100% 200%, radial-gradient(farthest-side at bottom, #fff calc(100% - 25px), transparent 0), linear-gradient(to right, theme('colors.primary.600'), theme('colors.accent.300'));
-
+        border-radius: 100rem 100rem 0 0;
     }
 
     .gauge::before {
@@ -63,4 +63,5 @@
         display: block;
         padding-top: 50%;
     }
+
 </style>
