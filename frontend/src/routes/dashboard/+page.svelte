@@ -1,5 +1,4 @@
 <script lang="ts">
-    import type {PageData} from './$types';
     import {onMount} from "svelte";
 
     import MiniPanel from "$lib/components/MiniPanel.svelte";
@@ -8,30 +7,20 @@
 
     import type {Device} from "$lib/models/Device";
     import Icon from "@iconify/svelte";
+    import {getDevices} from "$lib/utils/devicesUtils";
 
-    export let data: PageData;
     let devices: Device[] = [];
     let riskScoreTemp: number = 0;
 
     onMount(async () => {
-        for (let device of data.devices.hits.hits) {
-            devices.push({
-                id: device._id,
-                name: device?._source?.metadataName,
-                manufacturer: device?._source?.metadataManufacturer,
-                riskScore: device?._source?.riskScore,
-                mac: device?._source?.mac,
-                ip: device?._source?.ip,
-                deviceType: device?._source?.certainty,
-                lastSeen: device?._source?.lastSeen
-            });
-        }
-
+        // TODO: Replace with actual risk score calculation
+        devices = await getDevices();
         for (let device of devices) {
             riskScoreTemp += device.riskScore;
         }
         riskScoreTemp = riskScoreTemp / devices.length;
     });
+
 </script>
 
 <div class="pt-10">
@@ -83,9 +72,8 @@
                         <span class="text-primary-900 text-sm font-medium">See All Devices</span>
                     </button>
                 </a>
-
             </div>
-            <DevicesTable devices={devices}></DevicesTable>
+            <DevicesTable></DevicesTable>
         </div>
     </div>
 </div>

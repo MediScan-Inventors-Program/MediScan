@@ -29,3 +29,22 @@ export const DeviceColumns: DeviceColumn[] = [
         prettyName: "Last Seen"
     }
 ];
+
+export const SortableDeviceColumns: DeviceColumn[] = [
+    {
+        name: "name",
+        prettyName: "Name"
+    },
+    {
+        name: "riskScore",
+        prettyName: "Risk Score"
+    },
+    {
+        name: "deviceType",
+        prettyName: "Device Type"
+    },
+    {
+        name: "lastSeen",
+        prettyName: "Last Seen"
+    }
+];

@@ -49,12 +49,12 @@
                 </a>
             </div>
 
-            <div class:active-nav={$page.url.pathname === '/alerts'}
-                 class="nav-link flex items-center justify-center mt-3 px-9">
-                <a class:active-nav={$page.url.pathname === '/alerts'} href="/alerts" class="text-center text-white">
-                    Alerts
-                </a>
-            </div>
+<!--            <div class:active-nav={$page.url.pathname === '/alerts'}-->
+<!--                 class="nav-link flex items-center justify-center mt-3 px-9">-->
+<!--                <a class:active-nav={$page.url.pathname === '/alerts'} href="/alerts" class="text-center text-white">-->
+<!--                    Alerts-->
+<!--                </a>-->
+<!--            </div>-->
 
             <div class:active-nav={$page.url.pathname === '/risk'}
                  class="nav-link flex items-center justify-center mt-3 px-9">

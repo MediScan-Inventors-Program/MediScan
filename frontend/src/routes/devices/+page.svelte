@@ -1,5 +1,16 @@
+<script lang="ts">
+    import DevicesTable from "$lib/components/DevicesTable.svelte";
+    import {onMount} from "svelte";
+    import type {PageData} from './$types';
+    import type {Device} from "$lib/models/Device";
+    import {dev} from "$app/environment";
+
+
+</script>
+
 <div class="pt-10">
-    <h1 class="text-3xl font-semibold">Devices</h1>
+    <h1 class="text-3xl font-semibold mb-5">Devices</h1>
+    <DevicesTable></DevicesTable>
 
     <p>table with NO pagination for each device
         Columns:
