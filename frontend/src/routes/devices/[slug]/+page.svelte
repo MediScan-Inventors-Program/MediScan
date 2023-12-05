@@ -39,6 +39,21 @@
 
         const baselineDate = getRandomBaselineDate();
 
+        issues = [
+            {
+                description: "FDA recall Z-0218-2024 issued for device",
+                url: "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203531",
+                resolved: false,
+                date: "November 03, 2023"
+            },
+            {
+                description: "Vulnerability CVE-2011-3386 issued",
+                url: "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3386",
+                resolved: true,
+                date: "20110902"
+            }
+        ]
+
         events = [
             {
                 description: "Device connected to network",
@@ -195,4 +210,3 @@
         <h1 class="text-3xl font-semibold">Loading...</h1>
     {/if}
 </div>
-
