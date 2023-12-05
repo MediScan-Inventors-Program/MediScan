@@ -42,14 +42,12 @@ async function main(): Promise<void> {
                 const deviceRecord = await client.search({
                     index: "mediscan_devices",
                     query: {
-                        match: {
-                            mac: {
-                                query: filterResults.deviceInfo.mac
-                            }
+                        match_phrase: {
+                            mac: filterResults.deviceInfo.mac,
                         }
                     },
                     track_total_hits: true,
-                    rest_total_hits_as_int: true
+                    rest_total_hits_as_int: true,
                 });
 
                 if (deviceRecord.hits.hits.length === 0) {
