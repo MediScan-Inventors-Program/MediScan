@@ -2,7 +2,7 @@
     import DevicesTable from "$lib/components/DevicesTable.svelte";
     import {onMount} from "svelte";
     import type {Device} from "$lib/models/Device";
-    import {getDevices} from "$lib/utils/devicesUtils";
+    import {addDeviceManually, getDevices} from "$lib/utils/devicesUtils";
     import Icon from "@iconify/svelte";
     import {scan} from "$lib/utils/barcodeUtils";
 
@@ -31,7 +31,15 @@
     const scanTest = async () => {
         try {
             const result = await scan();
-            console.log("Scan result:", result);
+
+            if (result.length > 0) {
+                await addDeviceManually(result);
+
+                devices = await getDevices();
+                filteredDevices = devices;
+            }
+
+
         } catch (error) {
             console.error("Scan error:", error);
         }
@@ -39,7 +47,7 @@
 
 </script>
 
-<div class="pt-10">
+<div class="my-10">
     <div class="flex justify-between align-top mb-3">
         <h1 class="text-3xl font-semibold my-1">Devices</h1>
         <div class="flex justify-end align-middle w-max gap-x-2">

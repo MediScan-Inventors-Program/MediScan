@@ -46,7 +46,7 @@
         <div class="gauge w-4/5 mt-2 mb-8 relative" style="background: linear-gradient({scale(riskScore)}deg, transparent 50%, #fff 0) top/100% 200%, radial-gradient(farthest-side at bottom, #fff calc(100% - 25px), transparent 0), linear-gradient(to right, #883ECD, #FF00FA80);">
             <button class="mt-5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 tooltip" data-tip="Toggle percentage" on:click={() => showPercentage = !showPercentage}>
                 <span class="text-2xl lg:text-3xl text-text font-bold text-center block w-full">
-                    {showPercentage ? riskScore + '%' : getLetterGrade(riskScore)}
+                    {showPercentage ? riskScore.toFixed(2) + '%' : getLetterGrade(riskScore)}
                 </span>
                 <sub class="text-secondary-400 font-light text-center mt-0">
                     {showPercentage ? 'Risk Score' : 'Risk Grade'}

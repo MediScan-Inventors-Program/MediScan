@@ -6,8 +6,10 @@
     import Icon from "@iconify/svelte";
 
     // -1 means no limit
-    export let maxDevices = -1;
     export let devices: Device[] = [];
+    export let maxDevices = -1;
+
+    $: maxDevices && maxDevices >= 0 && (devices = devices.slice(0, maxDevices));
 
     let sortDirections: Record<string, string> = {
         "riskScore": "up",
@@ -15,11 +17,7 @@
     }
 
 
-    onMount(async () => {
-        if (maxDevices >= 0){
-            devices = devices.slice(0, maxDevices);
-        }
-
+    onMount(() => {
         sortBy("lastSeen");
     });
 
@@ -43,7 +41,6 @@
         sortDirections = sortDirections;
         devices = devices;
     }
-
 </script>
 
 <div class="mt-2 font-inter">
@@ -77,17 +74,23 @@
                 </td>
                 <td class="text-sm text-secondary-800 font-light px-6 py-3 whitespace-nowrap tooltip underline underline-offset-1 cursor-pointer mt-3"
                     data-tip="Copy" on:click={() => navigator.clipboard.writeText(device.mac)}>
-                    {device.mac}
+                    {device.mac ? device.mac : "N/A"}
                 </td>
                 <td class="text-sm text-secondary-800 font-light px-6 py-3 whitespace-nowrap">
                     {device.deviceType}
                 </td>
                 <td class="text-sm text-secondary-800 font-light px-6 py-3 whitespace-nowrap tooltip underline underline-offset-1 cursor-pointer mt-3"
                     data-tip="Copy" on:click={() => navigator.clipboard.writeText(device.ip)}>
-                    {device.ip}
+                    {device.ip ? device.ip : "N/A"}
                 </td>
                 <td class="text-sm text-secondary-800 font-light px-6 py-3 whitespace-nowrap">
-                    {device.lastSeen}
+                    {device.lastSeen.toLocaleString("en-US", {
+                        year: "numeric",
+                        month: "numeric",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric"
+                    })}
                 </td>
             </tr>
         {/each}

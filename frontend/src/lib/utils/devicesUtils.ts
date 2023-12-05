@@ -20,9 +20,21 @@ export const getDevices = async (): Promise<Device[]> => {
             mac: device._source.mac,
             ip: device._source.ip,
             deviceType: device._source.certainty,
-            lastSeen: device._source.lastSeen
+            lastSeen: new Date(device._source.lastSeen)
         })
     });
 
     return devices;
+}
+
+export const addDeviceManually = async (deviceName: string): Promise<Device> => {
+    const response = await fetch('/api/devices', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({device_name: deviceName})
+    })
+
+    return await response.json();
 }

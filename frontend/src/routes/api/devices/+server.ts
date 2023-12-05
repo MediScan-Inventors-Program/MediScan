@@ -30,8 +30,8 @@ export const POST = async ({request}: { request: Request }) => {
         "mac": "",
         "ip": "",
         "scanStatus": "DoNotScan",
-        "riskScore": 0,
-        "certainty": "Unknown",
+        "riskScore": -1,
+        "certainty": "UnknownDevice",
         "lastSeen": new Date().toISOString()
     }
 

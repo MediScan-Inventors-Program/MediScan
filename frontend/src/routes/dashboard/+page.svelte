@@ -23,7 +23,7 @@
 
 </script>
 
-<div class="pt-10">
+<div class="my-10">
     <h1 class="text-3xl font-semibold">Dashboard</h1>
     <div class="mt-5 flex justify-between align-middle gap-x-8 gap-y-5 flex-wrap">
         <MiniPanel
@@ -68,7 +68,7 @@
                 </button>
             </a>
         </div>
-        <DevicesTable devices={devices}></DevicesTable>
+        <DevicesTable devices={devices} maxDevices={5}></DevicesTable>
     </div>
     <div class="grid grid-cols-12 gap-8 mt-8">
         <div class="col-span-3">
