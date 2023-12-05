@@ -34,36 +34,40 @@ async function main(): Promise<void> {
     const pcapSession = pcap.createSession(pcapInterface);
 
     pcapSession.on('packet', async (rawPacket) => {
-        const packet = pcap.decode.packet(rawPacket);
+        try {
+            const packet = pcap.decode.packet(rawPacket);
 
-        for (const filter of getFilters()) {
-            const filterResults = filter(packet);
-            if (filterResults) {
-                const deviceRecord = await client.search({
-                    index: "mediscan_devices",
-                    query: {
-                        match_phrase: {
-                            mac: filterResults.deviceInfo.mac,
-                        }
-                    },
-                    track_total_hits: true,
-                    rest_total_hits_as_int: true,
-                });
-
-                if (deviceRecord.hits.hits.length === 0) {
-                    await client.index({
+            for (const filter of getFilters()) {
+                const filterResults = filter(packet);
+                if (filterResults) {
+                    const deviceRecord = await client.search({
                         index: "mediscan_devices",
+                        query: {
+                            match_phrase: {
+                                mac: filterResults.deviceInfo.mac,
+                            }
+                        },
+                        track_total_hits: true,
+                        rest_total_hits_as_int: true,
+                    });
+
+                    if (deviceRecord.hits.hits.length === 0) {
+                        await client.index({
+                            index: "mediscan_devices",
+                            id: randomUUID(),
+                            document: filterResults.deviceInfo
+                        });
+                    }
+
+                    await client.index({
+                        index: "mediscan_events",
                         id: randomUUID(),
-                        document: filterResults.deviceInfo
+                        document: filterResults.detectionEvent
                     });
                 }
-
-                await client.index({
-                    index: "mediscan_events",
-                    id: randomUUID(),
-                    document: filterResults.detectionEvent
-                });
             }
+        } catch (e) {
+            console.error(e);
         }
     })
 }
