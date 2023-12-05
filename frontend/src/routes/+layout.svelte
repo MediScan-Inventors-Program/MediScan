@@ -17,7 +17,13 @@
     <meta property="og:site_name" content="MediScan"/>
 </svelte:head>
 
-<div class="flex flex-col min-h-screen bg-background">
+<div id="video-overlay" class="hidden">
+    <video class="w-screen h-screen z-10" id="video">
+        <track kind="captions" src="">
+    </video>
+</div>
+
+<div class="flex flex-col min-h-screen bg-background" id="main-container">
     <Navbar/>
     <main class="flex-grow px-6 sm:px-14 md:px-24 lg:px-30 xl:px-36">
         <slot/>

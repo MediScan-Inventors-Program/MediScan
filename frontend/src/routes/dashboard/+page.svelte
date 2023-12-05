@@ -57,23 +57,26 @@
                 percentage={-8}>
         </MiniPanel>
     </div>
-    <div class="grid grid-cols-12 gap-8 mt-12">
-        <div class="col-span-full xl:col-span-3">
+    <div class="mt-8">
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-medium">Devices</h2>
+
+            <a href="/devices">
+                <button class="flex items-center justify-between bg-primary-100 hover:bg-primary-200 duration-300 border-primary-900 border-2 text-white rounded-lg px-4 py-2">
+                    <Icon icon="fluent:open-16-filled" class="w-6 text-primary-900"></Icon>
+                    <span class="text-primary-900 text-sm font-medium">See All Devices</span>
+                </button>
+            </a>
+        </div>
+        <DevicesTable devices={devices}></DevicesTable>
+    </div>
+    <div class="grid grid-cols-12 gap-8 mt-8">
+        <div class="col-span-3">
             <h2 class="text-2xl font-medium">Risk Score</h2>
             <RiskScore riskScore={riskScoreTemp}></RiskScore>
         </div>
-        <div class="col-span-full xl:col-span-9">
-            <div class="flex justify-between items-center">
-                <h2 class="text-2xl font-medium">Devices</h2>
+        <div class="col-span-9">
 
-                <a href="/devices">
-                    <button class="flex items-center justify-between bg-primary-100 hover:bg-primary-200 duration-300 border-primary-900 border-2 text-white rounded-lg px-4 py-2">
-                        <Icon icon="fluent:open-16-filled" class="w-6 text-primary-900"></Icon>
-                        <span class="text-primary-900 text-sm font-medium">See All Devices</span>
-                    </button>
-                </a>
-            </div>
-            <DevicesTable devices={devices}></DevicesTable>
         </div>
     </div>
 </div>
