@@ -12,20 +12,7 @@
     export let data;
     let device: Device;
     let events: Event[] = [];
-    let issues = [
-        {
-            description: "FDA recall Z-0218-2024 issued for device",
-            url: "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203531",
-            resolved: false,
-            date: new Date("2023-11-03")
-        },
-        {
-            description: "Vulnerability CVE-2011-3386 issued",
-            url: "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3386",
-            resolved: true,
-            date: new Date("2011-09-02")
-        }
-    ]
+    let issues: any = [];
 
     onMount(async () => {
         await getDevices().then((devices) => {
@@ -139,6 +126,21 @@
                 device.name = "Dash 3000 Patient Monitor";
                 device.manufacturer = "GE Healthcare";
                 device.lastSeen = new Date();
+
+                issues = [
+                    {
+                        description: "FDA recall Z-0218-2024 issued for device",
+                        url: "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203531",
+                        resolved: false,
+                        date: new Date("2023-11-03")
+                    },
+                    {
+                        description: "Vulnerability CVE-2011-3386 issued",
+                        url: "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3386",
+                        resolved: true,
+                        date: new Date("2011-09-02")
+                    }
+                ]
             }
 
         } catch (error) {
