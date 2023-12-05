@@ -29,8 +29,8 @@
         <MiniPanel
                 icon="uil:heart-rate"
                 panelName="Medical Devices"
-                panelValue="17"
-                percentage={2}>
+                panelValue={(devices.length - 1).toString()}
+                percentage={devices.length - 5}>
         </MiniPanel>
         <MiniPanel
                 icon="solar:shield-cross-outline"
@@ -53,8 +53,8 @@
         <MiniPanel
                 icon="fluent:question-24-filled"
                 panelName="Unknown Devices"
-                panelValue="5"
-                percentage={-8}>
+                panelValue="2"
+                percentage={1}>
         </MiniPanel>
     </div>
     <div class="mt-8">
