@@ -12,6 +12,20 @@
     export let data;
     let device: Device;
     let events: Event[] = [];
+    let issues = [
+        {
+            description: "FDA recall Z-0218-2024 issued for device",
+            url: "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203531",
+            resolved: false,
+            date: new Date("2023-11-03")
+        },
+        {
+            description: "Vulnerability CVE-2011-3386 issued",
+            url: "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3386",
+            resolved: true,
+            date: new Date("2011-09-02")
+        }
+    ]
 
     onMount(async () => {
         await getDevices().then((devices) => {
@@ -39,60 +53,76 @@
 
         const baselineDate = getRandomBaselineDate();
 
-        issues = [
-            {
-                description: "FDA recall Z-0218-2024 issued for device",
-                url: "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfres/res.cfm?id=203531",
-                resolved: false,
-                date: "November 03, 2023"
-            },
-            {
-                description: "Vulnerability CVE-2011-3386 issued",
-                url: "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2011-3386",
-                resolved: true,
-                date: "20110902"
-            }
-        ]
-
         events = [
             {
                 description: "Device connected to network",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 2)),
+                // date: 1-2 days before the baseline day (random)
+                date: new Date(baselineDate.getTime() - Math.random() * 86400000 * 2),
                 important: true,
             },
             {
                 description: "IP Changed to " + device.ip.slice(0, -2) + "54",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 1)),
+                date: new Date(
+                    baselineDate.getTime() -
+                    Math.random() * 86400000 * 2 +
+                    Math.random() * 3600000 * 5
+                ),
                 important: true,
             },
             {
                 description: "Security update installed",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 1)),
+                date: new Date(
+                    baselineDate.getTime() -
+                    Math.random() * 86400000 * 2 +
+                    Math.random() * 3600000 * 5
+                ),
                 important: false,
             },
             {
                 description: "Software patch deployed",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 3)),
+                date: new Date(
+                    baselineDate.getTime() -
+                    Math.random() * 86400000 * 2 +
+                    Math.random() * 3600000 * 5
+                ),
                 important: true,
             },
             {
                 description: "Critical alert received",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 2)),
+                date: new Date(
+                    baselineDate.getTime() -
+                    Math.random() * 86400000 * 2 +
+                    Math.random() * 3600000 * 5
+                ),
+
                 important: true,
+
             },
             {
                 description: "System rebooted",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 2)),
+                date: new Date(
+                    baselineDate.getTime() -
+                    Math.random() * 86400000 * 2 +
+                    Math.random() * 3600000 * 5
+                ),
                 important: true,
             },
             {
                 description: "Server maintenance scheduled",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 4)),
+                date: new Date(
+                    baselineDate.getTime() -
+                    Math.random() * 86400000 * 2 +
+                    Math.random() * 3600000 * 5
+                ),
                 important: false,
             },
             {
                 description: "Backup completed",
-                date: new Date(baselineDate.setHours(baselineDate.getHours() - 1)),
+                date: new Date(
+                    baselineDate.getTime() -
+                    Math.random() * 86400000 * 2 +
+                    Math.random() * 3600000 * 5
+                ),
                 important: true,
             },
         ];
@@ -154,13 +184,13 @@
                 </div>
             </div>
 
-<!--            <div class="rounded-lg border-2 border-secondary p-5 bg-white w-96">-->
-<!--                &lt;!&ndash;                issues&ndash;&gt;-->
-<!--                <h2 class="text-lg font-semibold">-->
-<!--                    Issues-->
-<!--                </h2>-->
+            <!--            <div class="rounded-lg border-2 border-secondary p-5 bg-white w-96">-->
+            <!--                &lt;!&ndash;                issues&ndash;&gt;-->
+            <!--                <h2 class="text-lg font-semibold">-->
+            <!--                    Issues-->
+            <!--                </h2>-->
 
-<!--            </div>-->
+            <!--            </div>-->
         </div>
         <div class="mt-4 flex justify-between align-top gap-x-5">
             <div class="flex-grow">
@@ -191,15 +221,28 @@
                     Issues
                 </h2>
                 <div class="rounded-lg border-2 border-secondary p-5 bg-white mt-2">
-                    {#if events.length > 0}
-                        {#each events as event}
+                    {#if issues.length > 0}
+                        {#each issues as issue}
                             <div class="flex justify-between mb-4">
-                                <p class="text-secondary-400">{event.description}</p>
-                                <p class="text-secondary-400">{event.date}</p>
+                                {#if issue.resolved}
+                                    <a href={issue.url}
+                                       class="cursor-pointer underline-offset-1 decoration-secondary-400 underline"
+                                       target="_blank">
+                                        <p class="text-secondary-400">{issue.description}</p>
+                                    </a>
+                                {:else}
+                                    <a href={issue.url}
+                                       class="cursor-pointer underline-offset-1 decoration-danger-400 underline"
+                                       target="_blank">
+                                        <p class="text-danger-400">{issue.description}</p>
+                                    </a>
+                                {/if}
+
+                                <p class="text-secondary-400">{issue.date.toLocaleString()}</p>
                             </div>
                         {/each}
                     {:else}
-                        <p class="text-secondary-400">No events</p>
+                        <p class="text-secondary-400">No issues</p>
                     {/if}
                 </div>
             </div>
