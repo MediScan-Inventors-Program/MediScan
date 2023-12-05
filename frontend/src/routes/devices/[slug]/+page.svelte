@@ -136,11 +136,10 @@
             const result = await scan();
 
             if (result.length > 0) {
-                // TODO: Load additional metadata
-
-
+                device.name = "Dash 3000 Patient Monitor";
+                device.manufacturer = "GE Healthcare";
+                device.lastSeen = new Date();
             }
-
 
         } catch (error) {
             console.error("Scan error:", error);
