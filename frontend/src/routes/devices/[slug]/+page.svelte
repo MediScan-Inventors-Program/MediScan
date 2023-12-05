@@ -166,32 +166,32 @@
         </div>
 
         <div class="flex justify align-top mt-4 pb-6 border-b-2 border-secondary-200">
-            <div class="rounded-lg border-2 border-secondary p-5 bg-white w-96">
+            <div class="rounded-lg border-2 border-secondary p-5 bg-white w-1/2">
                 <div class="flex justify-between">
                     <p class="text-secondary-400">IP Address</p>
                     <button class="text-secondary-400 tooltip underline underline-offset-1 cursor-pointer"
                             data-tip="Copy"
-                            on:click={() => navigator.clipboard.writeText(device.ip)}>{device.ip}</button>
+                            on:click={() => navigator.clipboard.writeText(device.ip)}>
+                        {device.ip ? device.ip : "N/A"}
+                    </button>
                 </div>
                 <div class="flex justify-between my-1.5">
                     <p class="text-secondary-400">MAC Address</p>
                     <button class="text-secondary-400 tooltip underline underline-offset-1 cursor-pointer"
                             data-tip="Copy"
-                            on:click={() => navigator.clipboard.writeText(device.mac)}>{device.mac}</button>
+                            on:click={() => navigator.clipboard.writeText(device.mac)}>
+                        {device.mac ? device.mac : "N/A"}
+                    </button>
                 </div>
                 <div class="flex justify-between">
                     <p class="text-secondary-400">Risk Score</p>
                     <RiskScoreBadge riskScore={device.riskScore}></RiskScoreBadge>
                 </div>
+                <div class="flex justify-between my-1.5">
+                    <p class="text-secondary-400">Last Updated</p>
+                    <button class="text-secondary-400">{device.lastSeen.toLocaleString()}</button>
+                </div>
             </div>
-
-            <!--            <div class="rounded-lg border-2 border-secondary p-5 bg-white w-96">-->
-            <!--                &lt;!&ndash;                issues&ndash;&gt;-->
-            <!--                <h2 class="text-lg font-semibold">-->
-            <!--                    Issues-->
-            <!--                </h2>-->
-
-            <!--            </div>-->
         </div>
         <div class="mt-4 flex justify-between align-top gap-x-5">
             <div class="flex-grow">

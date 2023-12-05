@@ -8,6 +8,7 @@
     import type {Device} from "$lib/models/Device";
     import Icon from "@iconify/svelte";
     import {getDevices} from "$lib/utils/devicesUtils";
+    import CVE from "$lib/images/CVE.png";
 
     let devices: Device[] = [];
     let riskScoreTemp: number = 0;
@@ -75,7 +76,11 @@
             <h2 class="text-2xl font-medium">Risk Score</h2>
             <RiskScore riskScore={riskScoreTemp}></RiskScore>
         </div>
-        <div class="col-span-9">
+        <div class="col-span-5">
+            <h2 class="text-2xl font-medium">CVE Distribution</h2>
+            <div class="rounded-lg border-2 border-secondary p-5 bg-white mt-3">
+                <img src={CVE} alt="CVE Distribution" class="w-full">
+            </div>
 
         </div>
     </div>
