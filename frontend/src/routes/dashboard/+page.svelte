@@ -73,7 +73,7 @@
                     </button>
                 </a>
             </div>
-            <DevicesTable></DevicesTable>
+            <DevicesTable devices={devices}></DevicesTable>
         </div>
     </div>
 </div>

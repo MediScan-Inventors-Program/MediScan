@@ -5,12 +5,9 @@
     import {onMount} from "svelte";
     import Icon from "@iconify/svelte";
 
-    import {getDevices} from "$lib/utils/devicesUtils";
-
-    let devices: Device[] = [];
-
     // -1 means no limit
     export let maxDevices = -1;
+    export let devices: Device[] = [];
 
     let sortDirections: Record<string, string> = {
         "riskScore": "up",
@@ -19,7 +16,6 @@
 
 
     onMount(async () => {
-        devices = await getDevices();
         if (maxDevices >= 0){
             devices = devices.slice(0, maxDevices);
         }
