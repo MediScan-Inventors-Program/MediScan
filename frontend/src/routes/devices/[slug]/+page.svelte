@@ -178,7 +178,7 @@
                 <div class="rounded-lg border-2 border-secondary p-5 bg-white mt-2">
                     {#if events.length > 0}
                         {#each events as event}
-                            <div class="flex justify-between">
+                            <div class="flex justify-between mb-4">
                                 <p class="text-secondary-400">{event.description}</p>
                                 <p class="text-secondary-400">{event.date}</p>
                             </div>
