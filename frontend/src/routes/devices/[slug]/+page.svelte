@@ -26,7 +26,9 @@
             }
         });
 
-        eventDummyData();
+        if (device.manufacturer !== "MediScan Manual Scan"){
+            eventDummyData();
+        }
     });
 
     const manuallyEdit = async () => {
