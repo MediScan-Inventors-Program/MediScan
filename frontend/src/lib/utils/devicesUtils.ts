@@ -38,3 +38,19 @@ export const addDeviceManually = async (deviceName: string): Promise<Device> => 
 
     return await response.json();
 }
+
+export const updateDeviceManually = async (device: Device): Promise<Device> => {
+    const response = await fetch('/api/updateDevice', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            device_name: device.name,
+            manufacturer: device.manufacturer,
+            id: device.id
+        })
+    })
+
+    return await response.json();
+}

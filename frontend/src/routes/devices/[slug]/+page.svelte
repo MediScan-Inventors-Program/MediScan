@@ -1,6 +1,6 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import {getDevices} from "$lib/utils/devicesUtils";
+    import {getDevices, updateDeviceManually} from "$lib/utils/devicesUtils";
 
     import type {Device} from "$lib/models/Device";
     import type {Event} from "$lib/models/Events";
@@ -13,6 +13,7 @@
     let device: Device;
     let events: Event[] = [];
     let issues: any = [];
+    let editManually: boolean = false;
 
     onMount(async () => {
         await getDevices().then((devices) => {
@@ -27,6 +28,14 @@
 
         eventDummyData();
     });
+
+    const manuallyEdit = async () => {
+        if (editManually) {
+            await updateDeviceManually(device);
+        }
+
+        editManually = !editManually;
+    };
 
     const eventDummyData = () => {
         const getRandomBaselineDate = () => {
@@ -154,15 +163,30 @@
     {#if device}
         <div class="flex justify-between align-bottom">
             <div>
-                <h1 class="text-3xl font-semibold">{device.name}</h1>
-                <p class="text-secondary-400">{device.manufacturer}</p>
+                {#if editManually}
+                    <div class="flex flex-col gap-y-2 w-full" id="manual-edit">
+                        <input type="text" class="border border-secondary-200 rounded-md bg-white h-min p-1.5 text-3xl font-semibold" bind:value={device.name}/>
+                        <input type="text" class="border border-secondary-200 rounded-md bg-white h-min p-1.5" bind:value={device.manufacturer}/>
+                    </div>
+
+                {:else}
+                    <h1 class="text-3xl font-semibold">{device.name}</h1>
+                    <p class="text-secondary-400">{device.manufacturer}</p>
+                {/if}
             </div>
 
-            <button class="border border-secondary-200 rounded-md bg-white h-min p-1.5 flex align-middle justify-center cursor-pointer tooltip"
-                    on:click={scanTest} data-tip="Manually scan device">
-                <Icon icon="ph:scan-bold"
-                      class="w-min h-7 text-secondary-200 hover:text-secondary-300 duration-150 text-center self-center"/>
-            </button>
+            <div class="flex justify-end gap-x-2">
+                <button class="border border-secondary-200 rounded-md bg-white h-min p-1.5 flex align-middle justify-center cursor-pointer tooltip"
+                        on:click={manuallyEdit} data-tip="Edit">
+                    <Icon icon="tabler:edit"
+                          class="w-min h-7 text-secondary-200 hover:text-secondary-300 duration-150 text-center self-center"/>
+                </button>
+                <button class="border border-secondary-200 rounded-md bg-white h-min p-1.5 flex align-middle justify-center cursor-pointer tooltip"
+                        on:click={scanTest} data-tip="Manually scan device">
+                    <Icon icon="ph:scan-bold"
+                          class="w-min h-7 text-secondary-200 hover:text-secondary-300 duration-150 text-center self-center"/>
+                </button>
+            </div>
         </div>
 
         <div class="flex justify align-top mt-4 pb-6 border-b-2 border-secondary-200">
@@ -254,3 +278,9 @@
         <h1 class="text-3xl font-semibold">Loading...</h1>
     {/if}
 </div>
+
+<style>
+    #manual-edit input {
+        width: 1000px !important;
+    }
+</style>
